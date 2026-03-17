@@ -6,7 +6,7 @@ const config = {
     type: Phaser.AUTO,
     height: 600,
     width: 800,
-    scene: [],
+    scene: [ Play ],
 }
 
 // define game
