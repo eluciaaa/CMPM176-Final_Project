@@ -8,6 +8,21 @@ class Play extends Phaser.Scene {
         this.load.path = './assets/'
         this.load.image('background', 'background.jpg')
         this.load.image('postitnote', '250x250postitnote.png')
+        this.load.image('day', '150x150day.png')
+        this.load.image('night', '150x150night.png')
+        this.load.image('comforteat', 'comforteat.png')
+        this.load.image('study', 'study.png')
+        this.load.image('workout', 'workout.png')
+        this.load.image('bedrot', 'bedrot.png')
+        this.load.image('studyfailure', 'studyfailure.png')
+        this.load.image('smallinjury', 'smallinjury.png')
+        this.load.image('biginjury', 'biginjury.png')
+        this.load.image('bingeeat', 'bingeeat.png')
+        this.load.image('doomscroll', 'doomscroll.png')
+        this.load.image('laundry', 'laundry.png')
+        this.load.image('gethomeandcrash', 'gethomeandcrash.png')
+        
+        // load spritesheets
         this.load.spritesheet('mentalhealth', '250x50mentalhealthbar.png', {
             frameWidth: 250,
             frameHeight: 50,
@@ -35,6 +50,14 @@ class Play extends Phaser.Scene {
         this.load.spritesheet('button4', '200x100button4.png', {
             frameWidth: 200,
             frameHeight: 100,
+        })
+        this.load.spritesheet('daytonight', '150x150daytonightspritesheet.png', {
+            frameWidth: 150,
+            frameHeight: 150,
+        })
+        this.load.spritesheet('nighttoday', '150x150nighttodayspritesheet.png', {
+            frameWidth: 150,
+            frameHeight: 150,
         })
     }
 
