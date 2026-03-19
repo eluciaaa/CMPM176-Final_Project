@@ -124,16 +124,44 @@ class Play extends Phaser.Scene {
         this.randomEvents = [
             // Positive Events
             {
-                
+                key: 'positive_1',
+                title: 'Good Grade!',
+                body: 'You aced an exam! Your hard work has paid off.',
+                options: [
+                    { text: 'Celebrate!', mental: 1, physical: 1, prep: 1 },
+                    { text: 'Keep studying for the next one.', mental: 0, physical: 0, prep: 3 },
+                    { text: 'Take a break and relax.', mental: 2, physical: 1, prep: 0 }
+                ]
             },
             {
-
+                key: 'positive_2',
+                title: 'Fortitude',
+                body: 'It\'s easy to forget sometimes that you\'re doing all this for a reason. But now you remember...',
+                options: [
+                    { text: 'You can do it!', mental: 1, physical: 0, prep: 2 },
+                    { text: 'There\'s more to life than study.', mental: 1, physical: 2, prep: 0 },
+                    { text: 'Things are going to be okay.', mental: 1, physical: 1, prep: 1 }
+                ]
             },
             {
-
+                key: 'positive_3',
+                title: '',
+                body: '',
+                options: [
+                    { text: '', mental: 0, physical: 0, prep: 0 },
+                    { text: '', mental: 0, physical: 0, prep: 0 },
+                    { text: '', mental: 0, physical: 0, prep: 0 }
+                ]
             },
             {
-
+                key: 'positive_4',
+                title: '',
+                body: '',
+                options: [
+                    { text: '', mental: 0, physical: 0, prep: 0 },
+                    { text: '', mental: 0, physical: 0, prep: 0 },
+                    { text: '', mental: 0, physical: 0, prep: 0 }
+                ]
             },
             {
                 key: 'positive_5',
@@ -146,6 +174,7 @@ class Play extends Phaser.Scene {
         
                 ]
             },
+
             // Trade-off Events
             {
                 key: 'tradeoff_1',
@@ -197,6 +226,7 @@ class Play extends Phaser.Scene {
                     { text: 'I don\'t have time right now. Do I ever have time?', mental: -1, physical: -1, prep: 1 }
                 ]
             },
+            
             // Negative Events
             {
                 key: 'negative_1',
@@ -213,7 +243,7 @@ class Play extends Phaser.Scene {
                 title: 'A Rough Day',
                 body: 'Everything seems to be going wrong today. You feel overwhelmed and exhausted. You say...',
                 options: [
-                    { text: 'I wish I could take a break...', mental: -1, physical: 0, prep: 0 },
+                    { text: 'It is what it is...', mental: -1, physical: 0, prep: 0 },
                     { text: 'God, what a headache...', mental: 0, physical: -1, prep: 0 },
                     { text: 'That\'s it. Naptime.', mental: 0, physical: 0, prep: -1 }
                 ]
@@ -229,8 +259,28 @@ class Play extends Phaser.Scene {
                 ]
 
             },
-            {},
-            {},
+            {
+                key: 'negative_4',
+                title: 'The Dreaded Eep',
+                body: 'Young or not, you\'re still human. You\'re feeling tired and you need to sleep sometime tonight. You...',
+                options: [
+                    { text: 'Pass out where you are and slump over on your keyboard.', mental: -1, physical: 1, prep: -1 },
+                    { text: 'Drag yourself to bed.', mental: 1, physical: -1, prep: -1 },
+                    { text: 'Sleep is optional. Said so in my CMPM-146 syllabus.', mental: -2, physical: -2, prep: 2 }
+                ]
+
+            },
+            {
+                key: 'negative_5',
+                title: 'A Fail?!',
+                body: 'You thought it was fine. It seemed easy at the time. But you failed an exam despite your best efforts - what now?',
+                options: [
+                    { text: 'Stay up and study all night for the next exam.', mental: -3, physical: -3, prep: 1 },
+                    { text: 'Ignore it. Surely this doesn\'t indicate a pattern.', mental: -3, physical: 1, prep: -3 },
+                    { text: 'Run away screaming into the woods.', mental: 1, physical: -3, prep: -3 }
+                ]
+
+            },
         ]
 
         this.createRandomEventOverlay()
