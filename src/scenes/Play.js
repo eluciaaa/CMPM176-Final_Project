@@ -203,16 +203,32 @@ class Play extends Phaser.Scene {
                 title: 'A Fight between Friends',
                 body: 'Two of your friends are having a heated argument about something trivial. You try to mediate, but it quickly escalates. You say...',
                 options: [
-                    { text: 'Fuck this, this isn\'nt worth it.', mental: -1, physical: 0, prep: 1 },
-                    { text: 'Let\'s just fight. Winner is right.', mental: 0, physical: 1, prep: -1 },
-                    { text: 'JUST SHUT UP! BOTH OF YOU!', mental: 1, physical: 0, prep: -1 },
+                    { text: 'Fuck this, this isn\'nt worth it.', mental: -2, physical: 0, prep: 1 },
+                    { text: 'Let\'s just fight. Winner is right.', mental: 0, physical: 1, prep: -2 },
+                    { text: 'JUST SHUT UP! BOTH OF YOU!', mental: 1, physical: -2, prep: 0 },
                 ]
             },
             {
                 key: 'negative_2',
-                title: ''
+                title: 'A Rough Day',
+                body: 'Everything seems to be going wrong today. You feel overwhelmed and exhausted. You say...',
+                options: [
+                    { text: 'I wish I could take a break...', mental: -1, physical: 0, prep: 0 },
+                    { text: 'God, what a headache...', mental: 0, physical: -1, prep: 0 },
+                    { text: 'That\'s it. Naptime.', mental: 0, physical: 0, prep: -1 }
+                ]
             },
-            {},
+            {
+                key: 'negative_3',
+                title: 'Reasonable Crash Out',
+                body: 'On top of everything else, now there\'s some other bullshit you have to deal with. You respond...',
+                options: [
+                    { text: 'Why me?!', mental: -2, physical: 0, prep: 0 },
+                    { text: 'I\'ll only need another six hours to fix this too...', mental: 0, physical: -2, prep: 0 },
+                    { text: 'Nah, fuck this.', mental: 0, physical: 0, prep: -2 }
+                ]
+
+            },
             {},
             {},
         ]
