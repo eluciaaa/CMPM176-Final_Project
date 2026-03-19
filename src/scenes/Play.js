@@ -49,10 +49,12 @@ class Play extends Phaser.Scene {
             frameWidth: 200,
             frameHeight: 100,
         })
+        /*
         this.load.spritesheet('button4', '200x100button4.png', {
             frameWidth: 200,
             frameHeight: 100,
         })
+        */
         this.load.spritesheet('daytonight', '150x150daytonightspritesheet.png', {
             frameWidth: 150,
             frameHeight: 150,
@@ -101,7 +103,12 @@ class Play extends Phaser.Scene {
 
         this.add.text(-1000, -1000, '.', { fontFamily: 'Handwriting' }) // what's the purpose of this?
 
+        this.eventsPerDay = 1
+        this.daysRemaining = 5
+        this.days = this.add.text(360, 10, `${this.daysRemaining}`, { fontFamily: 'Handwriting', fontSize: '45px', color: '#333333'}).setDepth(1)
+
         document.fonts.ready.then(() => {
+            this.add.text(120, 10, 'Days Until Exam:', this.textconfig)
             this.add.text(120, 80, 'Mental Health:', this.textconfig)
             this.add.text(450, 80, 'Physical Health:', this.textconfig)
             this.add.text(230, 260, 'Exam Preparedness:', this.textconfig)
@@ -111,13 +118,13 @@ class Play extends Phaser.Scene {
         this.background = this.add.tileSprite(0, 0, 800, 600, 'background').setOrigin(0).setDepth(0)
         this.postitnote = this.add.tileSprite(550, 169, 250, 250, 'postitnote').setOrigin(0).setDepth(0)
 
-        this.mentalhealth = this.add.sprite(230, 151, 'mentalhealth', 0)
-        this.physicalhealth = this.add.sprite(570, 151, 'physicalhealth', 0)
+        this.mentalhealth = this.add.sprite(230, 151, 'mentalhealth', 3)
+        this.physicalhealth = this.add.sprite(570, 151, 'physicalhealth', 3)
         this.exampreparedness = this.add.sprite(360, 327, 'exampreparedness', 0)
-        this.button1 = this.add.sprite(280, 450, 'button1', 0).setInteractive()
-        this.button2 = this.add.sprite(570, 450, 'button2', 0).setInteractive()
-        this.button3 = this.add.sprite(280, 550, 'button3', 0).setInteractive()
-        this.button4 = this.add.sprite(570, 550, 'button4', 0).setInteractive()
+        this.button1 = this.add.sprite(200, 495, 'button1', 0).setInteractive()
+        this.button2 = this.add.sprite(425, 495, 'button2', 0).setInteractive()
+        this.button3 = this.add.sprite(650, 495, 'button3', 0).setInteractive()
+        //this.button4 = this.add.sprite(570, 550, 'button4', 0).setInteractive()
 
         this.mentalhealthvalue = 0
         this.physicalhealthvalue = 0
@@ -308,12 +315,14 @@ class Play extends Phaser.Scene {
         this.button3.on('pointerout', () => {
             this.button3.setFrame(0)
         })
+        /*
         this.button4.on('pointerover', () => {
             this.button4.setFrame(1)
         })
         this.button4.on('pointerout', () => {
             this.button4.setFrame(0)
         })
+        */
 
         this.button1.on('pointerdown', () => {
             if (this.eventActive) return
@@ -330,10 +339,12 @@ class Play extends Phaser.Scene {
             this.applyStatChange('physical', -1)
         })
 
+        /*
         this.button4.on('pointerdown', () => {
             if (this.eventActive) return
             this.applyStatChange('physical', 1)
         })
+        */
 
         this.input.keyboard.on('keydown-R', () => {
             if (!this.eventActive) {
@@ -457,6 +468,8 @@ class Play extends Phaser.Scene {
         const selectedOption = this.currentEvent.options[optionIndex]
         if (!selectedOption) return
 
+        this.progressDay()
+
         this.applyStatChange('mental', selectedOption.mental || 0)
         this.applyStatChange('physical', selectedOption.physical || 0)
         this.applyStatChange('prep', selectedOption.prep || 0)
@@ -467,6 +480,22 @@ class Play extends Phaser.Scene {
         )
 
         this.hideRandomEvent()
+    }
+
+    progressDay () {
+        console.log(`Event #${this.eventsPerDay}`)
+        if (this.eventsPerDay > 2) {
+            this.daysRemaining--
+            this.days.text = `${this.daysRemaining}`
+            this.eventsPerDay = 1
+        } else {
+            this.eventsPerDay++
+        }
+        
+        if (!this.daysRemaining) {
+            console.log("Game Won!")
+            this.daysRemaining = 5
+        } 
     }
 
     update() {
