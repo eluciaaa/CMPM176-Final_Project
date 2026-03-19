@@ -145,22 +145,22 @@ class Play extends Phaser.Scene {
             },
             {
                 key: 'positive_3',
-                title: '',
-                body: '',
+                title: 'Leadership',
+                body: 'Your team on a group project have come to respect you, and even admire you. They look to you for support during a hard time. You tell them...',
                 options: [
-                    { text: '', mental: 0, physical: 0, prep: 0 },
-                    { text: '', mental: 0, physical: 0, prep: 0 },
-                    { text: '', mental: 0, physical: 0, prep: 0 }
+                    { text: 'You\'ve all done great work. You should be proud of yourselves.', mental: 2, physical: 0, prep: 0 },
+                    { text: 'Remember - you all still have needs. Go outside from time to time.', mental: 0, physical: 2, prep: 0 },
+                    { text: 'One final push and we\'re done!', mental: 0, physical: 0, prep: 2 }
                 ]
             },
             {
                 key: 'positive_4',
-                title: '',
-                body: '',
+                title: 'Discipline',
+                body: 'You have been consistently putting in the effort to study and improve your skills. Your dedication is paying off.',
                 options: [
-                    { text: '', mental: 0, physical: 0, prep: 0 },
-                    { text: '', mental: 0, physical: 0, prep: 0 },
-                    { text: '', mental: 0, physical: 0, prep: 0 }
+                    { text: 'Feel pride and reassurance in your progress.', mental: 2, physical: 0, prep: 1 },
+                    { text: 'You take a walk - and feel good about it.', mental: 1, physical: 2, prep: 0 },
+                    { text: 'Push through and finish everything today.', mental: 0, physical: 0, prep: 3 }
                 ]
             },
             {
@@ -226,7 +226,7 @@ class Play extends Phaser.Scene {
                     { text: 'I don\'t have time right now. Do I ever have time?', mental: -1, physical: -1, prep: 1 }
                 ]
             },
-            
+
             // Negative Events
             {
                 key: 'negative_1',
