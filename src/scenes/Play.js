@@ -68,6 +68,12 @@ class Play extends Phaser.Scene {
             frameWidth: 150,
             frameHeight: 150,
         })
+
+        // audio
+        this.load.audio('pencil', 'pencil_scribble.mp3')
+        this.load.audio('music', 'romansenykmusic.mp3')
+        this.load.audio('win', 'fanfare.ogg')
+        this.load.audio('lose', 'losetrumpet.mp3')
     }
 
     create() {
@@ -180,6 +186,12 @@ class Play extends Phaser.Scene {
         this.button2 = this.add.sprite(425, 495, 'button2', 0).setInteractive({ useHandCursor: true })
         this.button3 = this.add.sprite(650, 495, 'button3', 0).setInteractive({ useHandCursor: true })
         //this.button4 = this.add.sprite(570, 550, 'button4', 0).setInteractive()
+
+        this.pencilSFX = this.sound.add('pencil')
+        this.win = this.sound.add('win')
+        this.lose = this.sound.add('lose')
+        this.music = this.sound.add('music')
+        this.music.play({ loop: true, detune: 200 })
 
         this.mentalhealthvalue = 3
         this.physicalhealthvalue = 3
@@ -383,6 +395,7 @@ class Play extends Phaser.Scene {
             this.introImage.setAlpha(0)
             this.introText.setAlpha(0)
             this.continueText.setAlpha(0)
+            this.pencilSFX.play()
         })
 
         this.button1.on('pointerdown', () => {
@@ -390,6 +403,7 @@ class Play extends Phaser.Scene {
             this.applyStatChange('mental', 1)
             console.log('Adding 1 to mental...')
             this.showRandomEvent()
+            this.pencilSFX.play()
         })
 
         this.button2.on('pointerdown', () => {
@@ -397,6 +411,7 @@ class Play extends Phaser.Scene {
             this.applyStatChange('physical', 1)
             console.log('Adding 1 to physical...')
             this.showRandomEvent()
+            this.pencilSFX.play()
         })
 
         this.button3.on('pointerdown', () => {
@@ -404,6 +419,7 @@ class Play extends Phaser.Scene {
             this.applyStatChange('prep', 1)
             console.log('Adding 1 to prep...')
             this.showRandomEvent()
+            this.pencilSFX.play()
         })
 
         /*
@@ -416,6 +432,8 @@ class Play extends Phaser.Scene {
         this.input.keyboard.on('keydown-R', () => {
             if (!this.gameActive) {
                 this.restartGame()
+                this.pencilSFX.play()
+                this.music.play({ loop: true, detune: 200 })
             }
         })
     }
@@ -459,6 +477,7 @@ class Play extends Phaser.Scene {
 
             button.on('pointerdown', () => {
                 this.handleEventOption(i)
+                this.pencilSFX.play()
             })
 
             this.eventOptionButtons.push(button)
@@ -540,12 +559,16 @@ class Play extends Phaser.Scene {
         this.applyStatChange('prep', selectedOption.prep || 0)
 
         if (this.mentalHealthEnding()) {
+            this.music.stop(true)
+            this.lose.play()
             this.gameActive = false
             this.hideEverything()
             this.MHEndingImage.setAlpha(1)
             this.MHEndingText.setAlpha(1)
             this.restartText.setAlpha(1)
         } else if (this.physicalHealthEnding()) {
+            this.music.stop(true)
+            this.lose.play()
             this.gameActive = false
             this.hideEverything()
             this.PHEndingImage.setAlpha(1)
@@ -578,12 +601,16 @@ class Play extends Phaser.Scene {
         
         if (!this.daysRemaining) {
             if (this.exampreparednessvalue >= 3) {
+                this.music.stop(true)
+                this.win.play()
                 this.gameActive = false
                 this.hideEverything()
                 this.passEndingImage.setAlpha(1)
                 this.passEndingText.setAlpha(1)
                 this.restartText.setAlpha(1)
             } else {
+                this.music.stop(true)
+                this.lose.play()
                 this.gameActive = false
                 this.hideEverything()
                 this.failEndingImage.setAlpha(1)
